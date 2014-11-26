@@ -10,22 +10,22 @@ angular.module('myApp.view2', ['ngRoute'])
 }])
 
 .directive('countdownTimer', ['$interval', 'dateFilter', function($interval, dateFilter){
-	
+
 	function link(scope, element, attrs){
 		var format = false;
-		var time = 0; 
+		var time = 0;
 		var timeoutId;
 
 		function updateTime(){
-			
+
 			if(time > 0){
 				time -= 1000;
-				element.text(dateFilter(time, format ? 'hh:mm:ss' : 'mm:ss'));	
+				element.text(dateFilter(time, format ? 'h:mm:ss' : 'mm:ss'));	
 			}
 			else{
 				element.text(dateFilter(0, format ? 'hh:mm:ss' : 'mm:ss'));
 			}
-			
+
 		}
 
 		scope.$watch(attrs.countdownTimer, function(value) {
@@ -34,7 +34,7 @@ angular.module('myApp.view2', ['ngRoute'])
 			else format = false;
 
 			time = value*60*1000;
-			updateTime();			
+			updateTime();
 		});
 
 		element.on('$destroy', function(){
@@ -52,6 +52,6 @@ angular.module('myApp.view2', ['ngRoute'])
 }])
 
 .controller('View2Ctrl', ['$scope', '$interval', function($scope, $interval) {
-	//var interval = 
+	//var interval =
 
 }]);
