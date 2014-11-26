@@ -1,0 +1,57 @@
+'use strict';
+
+angular.module('myApp.view2', ['ngRoute'])
+
+.config(['$routeProvider', function($routeProvider) {
+  $routeProvider.when('/view2', {
+    templateUrl: 'view2/view2.html',
+    controller: 'View2Ctrl'
+  });
+}])
+
+.directive('countdownTimer', ['$interval', 'dateFilter', function($interval, dateFilter){
+	
+	function link(scope, element, attrs){
+		var format = false;
+		var time = 0; 
+		var timeoutId;
+
+		function updateTime(){
+			
+			if(time > 0){
+				time -= 1000;
+				element.text(dateFilter(time, format ? 'hh:mm:ss' : 'mm:ss'));	
+			}
+			else{
+				element.text(dateFilter(0, format ? 'hh:mm:ss' : 'mm:ss'));
+			}
+			
+		}
+
+		scope.$watch(attrs.countdownTimer, function(value) {
+			if(value > 60)
+				format = true;
+			else format = false;
+
+			time = value*60*1000;
+			updateTime();			
+		});
+
+		element.on('$destroy', function(){
+			$interval.cancel(timeoutId);
+		});
+
+		timeoutId = $interval(function(){
+			updateTime();
+		}, 1000);
+	}
+
+		return {
+			link : link
+		};
+}])
+
+.controller('View2Ctrl', ['$scope', '$interval', function($scope, $interval) {
+	//var interval = 
+
+}]);
