@@ -8,15 +8,15 @@ var myApp = angular.module('myApp', [
   'myApp.version'
 ])
 .controller('myAppCtrl', ['$scope','$location', '$window', function($scope, $location, $window){
-	
+
 	$scope.go = function(){
 		var currentView = $location.path();
-    
-		if(currentView.endsWith('view1')){
+
+		if(currentView.search('view1') > -1){
 			$location.path('/view2');
 		}
 		else{
-			$location.path('/view1');	
+			$location.path('/view1');
 		}
 	};
 }])
@@ -24,7 +24,3 @@ var myApp = angular.module('myApp', [
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/view1'});
 }]);
-
-
-
-
