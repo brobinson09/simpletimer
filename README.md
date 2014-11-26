@@ -1,6 +1,6 @@
-# A basic node timer/clock 
+# A basic node timer/clock
 
-This project is a basic timer/clock primarily built with a MEAN stack in mind. This application is a work in progress and solo purpose of it is to learn and practice web development. 
+This project is a basic timer/clock primarily built with a MEAN stack in mind. This application is a work in progress and sole purpose of it is to learn and practice web development. 
 
 
 ## Getting Started
