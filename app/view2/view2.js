@@ -13,17 +13,17 @@ angular.module('myApp.view2', ['ngRoute'])
 
 	function link(scope, element, attrs){
 		var format = false;
-		var time = 0;
+		var time = new Date();
 		var timeoutId;
 
 		function updateTime(){
 
 			if(time > 0){
 				time -= 1000;
-				element.text(dateFilter(time, format ? 'h:mm:ss' : 'mm:ss'));	
+				element.text(new Date().getTime());
 			}
 			else{
-				element.text(dateFilter(0, format ? 'hh:mm:ss' : 'mm:ss'));
+				element.text(dateFilter(0, format ? 'hh:mm:ss' : 'hh:mm:ss'));
 			}
 
 		}
@@ -33,7 +33,12 @@ angular.module('myApp.view2', ['ngRoute'])
 				format = true;
 			else format = false;
 
-			time = value*60*1000;
+
+			//time = new Date();
+      //alert(time.getTime());
+      //time.setTime(60*60*1000);
+      //alert(time.getTime());
+
 			updateTime();
 		});
 
